@@ -7,9 +7,21 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
-  $( function() {
-    $( "#datepicker" ).datepicker();
-  } );
+    
+     var disableDates = ["9-11-2019", "14-11-2019", "15-11-2019","27-12-2019"];
+      
+    $('#datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        beforeShowDay: function(date){
+            dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            if(disableDates.indexOf(dmy) != -1){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+    });
   </script>
 </head>
 <body>
